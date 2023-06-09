@@ -25,13 +25,15 @@ const Main = () => {
            Recommended 
           </NavLink>
           
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search"
+            className=" rounded-md p-1 bg-green-300"
+            />
             
         </div>
 
         <div className=" flex flex-row gap-6">
             <div className=" flex flex-col bg-slate-200 ">
-            <h className=" text-4xl">Choose your comfortable zone<br/>the happier you are</h>
+            <h className=" mt-10 text-4xl">See everything with Clarity<br/>We never <br/>disappoint</h>
             <button className=" text-2xl  rounded-md mt-10">Buy</button>
             </div>
             <img src="https://salinaka-ecommerce.web.app/images/banner-girl.789f1fa6f451ad26c5039fcbc049ace7.png" 
