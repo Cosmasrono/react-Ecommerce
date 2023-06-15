@@ -4,28 +4,7 @@ import '../cart.gif';
 const About = () => {
   const [showDetails, setShowDetails] = useState({});
   const [cartItems, setCartItems] = useState([]);
-
-  const toggleDetails = (index) => {
-    setShowDetails((prevState) => ({
-      ...prevState,
-      [index]: !prevState[index],
-    }));
-  };
-
-  const addToCart = (item) => {
-    // Check if the item is already in the cart
-    const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
-
-    if (isItemInCart) {
-      console.log('Item is already in the cart');
-      return;
-    }
-
-    // Add the item to the cart
-    setCartItems((prevItems) => [...prevItems, item]);
-  };
-
-  const images = [
+  const [images] = useState([
     {
       id: 1,
       title: 'Canadian hotel',
@@ -35,22 +14,55 @@ const About = () => {
       types: 'Single, Double, Suite',
     },
     {
-      id: 2,
-      title: 'Canadian hotel',
-      url:
-        'https://www.travelandleisure.com/thmb/zC_z-UrTT78BpN0tkntgXnjTtqs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/capella-bangkok-004-TOPHOTELSWB21-fc4a3afc3272422799a46f5d08c0be4e.jpg',
-      price: '$500 per night',
-      types: 'Single, Double, Suite',
-    },
-    {
       id: 3,
       title: 'Canadian hotel',
       url:
         'https://www.travelandleisure.com/thmb/zC_z-UrTT78BpN0tkntgXnjTtqs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/capella-bangkok-004-TOPHOTELSWB21-fc4a3afc3272422799a46f5d08c0be4e.jpg',
-      price: '$500 per night',
+      price: '$200 per night',
       types: 'Single, Double, Suite',
     },
-  ];
+
+    {
+      id: 2,
+      title: 'Canadian hotel',
+      url:
+        'https://www.travelandleisure.com/thmb/zC_z-UrTT78BpN0tkntgXnjTtqs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/capella-bangkok-004-TOPHOTELSWB21-fc4a3afc3272422799a46f5d08c0be4e.jpg',
+      price: '$200 per night',
+      types: 'Single, Double, Suite',
+    }
+  ]);
+
+  const toggleDetails = (index) => {
+    setShowDetails((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index],
+    }));
+  };
+
+  const addToCart = (item) => {
+    const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+
+    if (isItemInCart) {
+      console.log('Item is already in the cart');
+      return;
+    }
+
+    setCartItems((prevItems) => [...prevItems, item]);
+  };
+
+  const removeFromCart = (item) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((cartItem) => cartItem.id !== item.id)
+    );
+  };
+
+  const calculateTotalLength = () => {
+    return cartItems.length;
+  };
+
+  const calculateTotalPayment = () => {
+    return cartItems.reduce((total, item) => total + parseInt(item.price), 0);
+  };
 
   return (
     <div>
@@ -70,6 +82,8 @@ const About = () => {
             ))}
           </ul>
         )}
+        <p>Total Length: {calculateTotalLength()}</p>
+        <p>Total Payment: {calculateTotalPayment()}</p>
       </div>
       <div className="flex items-center flex-wrap justify-center gap-6 m-3">
         {images.map((image) => {
@@ -96,6 +110,12 @@ const About = () => {
                     <h3 className="text-2xl mb-2">{image.title}</h3>
                     <p className="text-gray-800">{image.price}</p>
                     <p className="text-gray-800">{image.types}</p>
+                    <button
+                      onClick={() => removeFromCart(image)}
+                      className="rounded-lg p-3 mt-4 bg-red-500"
+                    >
+                      Remove
+                    </button>
                     <button
                       onClick={() => toggleDetails(image.id)}
                       className="rounded-lg p-3 m-4 bg-red-500"

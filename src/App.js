@@ -1,21 +1,26 @@
 import React from 'react';
 import './App.css';
 import './index.css';
-import Hello from './ImageGalary';
 import Main from './components/Main';
 import About from './components/About';
-import './App.css'
+ import ImageGalary from './ImageGalary';
+import YouTubeVideos from './components/YouTubeVideos';
+
+
+
 function App() {
- 
   return (
     <div>
-       
-    
-      <Main/>
-      <Hello />
+        <Main/>
+        <YouTubeVideos/>
       <About/>
+      <ImageGalary/>
+        
     </div>
   );
 }
+<div>
+<h1>Route</h1>
+</div>
 
 export default App;

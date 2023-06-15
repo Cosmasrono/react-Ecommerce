@@ -5,7 +5,7 @@ const Main = () => {
     <BrowserRouter>
       <div className="main">
 
-        <h1>The money heist</h1>
+        
         <img src="https://www.shutterstock.com/image-vector/shopping-cart-isolated-on-white-vector-1936903765"alt=""/>
 
         <div className="flex flex-wrap justify-start gap-6 m-3">
@@ -43,7 +43,7 @@ const Main = () => {
             </div>
 
         <div className="flex items-center justify-center text-3xl m-4 flex-row gap-6">
-            <h1> Most Featured products</h1>
+            <h1> Most Featured youtube videos</h1>
 
             </div>
       </div>
